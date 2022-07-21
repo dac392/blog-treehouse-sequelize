@@ -14,7 +14,14 @@ module.exports = (sequelize) => {
     }
   }
   Article.init({
-    title: Sequelize.STRING,
+    title: {
+      type : Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "'Title' field is required and cannot be empty" },
+        notNull: { msg: "'Title' field is required and cannot be null" }
+      }
+    },
     author: Sequelize.STRING,
     body: Sequelize.TEXT
   }, { sequelize });
